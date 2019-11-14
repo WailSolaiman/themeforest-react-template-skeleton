@@ -1,0 +1,14 @@
+.projects {
+
+    h2 {
+        text-align: center;
+    }
+
+    &__content {
+
+        .iltlc-card-body {
+            height: 100px;
+            overflow: auto;
+        }
+    }
+}

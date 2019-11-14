@@ -1,0 +1,20 @@
+.contact {
+
+    &__header {
+        text-align: center;
+    }
+
+    &__subheader {
+        text-align: center;
+        margin-bottom: 2rem;
+        text-transform: capitalize;
+    }
+
+    &__submit {
+        margin-bottom: 0 !important;
+
+        button {
+            float: right;
+        }
+    }
+}

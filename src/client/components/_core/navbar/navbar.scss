@@ -1,0 +1,92 @@
+@import "../../../sass/variables";
+
+.menu-bar {
+    display: flex;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    overflow: hidden;
+    border-bottom: 1px solid transparent;
+
+    .logo {
+        width: 150px;
+        float: left;
+        text-align: center;
+
+        p {
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin: 0;
+            color: $primary-color;
+
+            @media(max-width: 767px) {
+                padding: 10px 20px;
+                margin-left: -20px;
+            }
+        }
+    }
+
+    .menu-content {
+        width: 100%;
+        float: left;
+
+        a,
+        span {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        &__main-menu {
+
+            @media(max-width: 767px) {
+                display: none !important;
+            }
+        }
+
+        &__secondary-menu {
+
+            @media(max-width: 767px) {
+                display: none !important;
+            }
+        }
+    }
+
+    .bars-menu {
+        float: right;
+        height: 32px;
+        padding: 6px;
+        min-width: 20px;
+        margin-top: 5px;
+        display: none;
+        background: none;
+        border: none !important;
+
+        @media(max-width: 767px) {
+            display: inline-block;
+        }
+
+        .bars-btn {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: $primary-color;
+            position: relative;
+
+            &:after,
+            &:before {
+                content: attr(x);
+                width: 20px;
+                position: absolute;
+                top: -6px;
+                left: 0;
+                height: 2px;
+                background: $primary-color;
+            }
+
+            &:after {
+                top: auto;
+                bottom: -6px;
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+@import '../../sass/variables';
+
+.social-profiles {
+    margin-bottom: 3rem;
+
+    @media (min-width: 1200px) {
+        margin-bottom: 0;
+    }
+
+    &__icon {
+        color: $primary-color !important;
+        font-size: 2rem;
+    }
+}

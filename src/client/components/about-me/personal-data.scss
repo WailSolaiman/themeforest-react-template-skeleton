@@ -1,0 +1,15 @@
+@import '../../sass/variables';
+
+.personal-data {
+
+    &__descriptions {
+
+        .iltlc-descriptions-item-label {
+            font-weight: 700;
+        }
+
+        .iltlc-descriptions-item-content {
+            color: $primary-color;
+        }
+    }
+}
