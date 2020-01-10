@@ -2,22 +2,25 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const outputDirectory = 'dist'
+const isDevelopment = process.env.Node_ENV === 'development'
 
 module.exports = {
-    entry: './src/client/index.js',
+    entry: './src/index.js',
     output: {
         filename: '[name].bundle.js',
         chunkFilename: '[name].bundle.js',
-        path: path.resolve(__dirname, outputDirectory),
-        publicPath: '/',
+        path:
+            isDevelopment === 'development'
+                ? '/'
+                : path.resolve(__dirname, outputDirectory),
     },
     optimization: {
         minimizer: [
-            new UglifyJsPlugin({
+            new TerserPlugin({
                 cache: true,
                 parallel: true,
                 sourceMap: true,
@@ -50,17 +53,26 @@ module.exports = {
                 use: [
                     {
                         loader:
-                            process.env.NODE_ENV === 'development'
+                            isDevelopment === 'development'
                                 ? 'style-loader'
                                 : MiniCssExtractPlugin.loader,
                     },
                     'css-loader',
+                    'postcss-loader',
                     'sass-loader',
                 ],
             },
             {
-                test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
-                use: 'file-loader',
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'fonts/',
+                        },
+                    },
+                ],
             },
         ],
     },
